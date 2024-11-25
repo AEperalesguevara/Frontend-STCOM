@@ -1,0 +1,71 @@
+.product-grid {
+  width: 90%; /* Ya es en porcentaje */
+  margin-left: 5%; /* Ya es en porcentaje */
+  margin-right: 5%; /* Ya es en porcentaje */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.35vw; /* 20px -> (20 / 1476) * 100 */
+  padding: 1.35vw; /* 20px -> (20 / 1476) * 100 */
+}
+
+.product-card {
+  background-color: #fff;
+  border: 0.067vw solid #e0e0e0; /* 1px -> (1 / 1476) * 100 */
+  border-radius: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+  padding: 1.08vw; /* 16px -> (16 / 1476) * 100 */
+  text-align: center;
+  box-shadow: 0 0.135vw 0.27vw rgba(0, 0, 0, 0.1); /* 2px, 4px -> (2 / 1476) * 100, (4 / 1476) * 100 */
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-0.34vw); /* 5px -> (5 / 1476) * 100 */
+}
+
+.product-image {
+  max-width: 10vw; /* Queda igual */
+  height: auto;
+  border-radius: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+  margin-bottom: 0.81vw; /* 12px -> (12 / 1476) * 100 */
+}
+
+.product-name {
+  font-size: 1.22vw; /* 18px -> (18 / 1476) * 100 */
+  font-weight: bold;
+  margin: 0.54vw 0; /* 8px -> (8 / 1476) * 100 */
+}
+
+.product-brand {
+  font-size: 0.95vw; /* 14px -> (14 / 1476) * 100 */
+  color: #888;
+  margin-bottom: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+}
+
+.product-description {
+  font-size: 0.95vw; /* 14px -> (14 / 1476) * 100 */
+  color: #555;
+  margin-bottom: 1.08vw; /* 16px -> (16 / 1476) * 100 */
+}
+
+.product-price {
+  font-size: 1.08vw; /* 16px -> (16 / 1476) * 100 */
+  font-weight: bold;
+  color: #007bff;
+}
+
+.see-more-button {
+  border-radius: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+  border: 0.067vw solid transparent; /* 1px -> (1 / 1476) * 100 */
+  padding: 0.4vw 0.81vw; /* 0.6em 1.2em convertido */
+  font-size: 1em; /* Mantiene el valor relativo */
+  font-weight: 500;
+  background-color: #646cff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  margin-bottom: 4.74vw; /* 7vh -> Convertido en proporción */
+}
+
+.see-more-button:hover {
+  background-color: #535bf2;
+}

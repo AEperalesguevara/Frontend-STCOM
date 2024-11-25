@@ -1,0 +1,43 @@
+.search-bar-container {
+  width: 70%; /* Ya es en porcentaje */
+  margin: auto;
+  text-align: center;
+  margin-top: 3.39vw; /* 50px -> (50 / 1476) * 100 */
+  margin-bottom: 16.94vw; /* 250px -> (250 / 1476) * 100 */
+}
+
+.search-bar-title {
+  margin-bottom: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+}
+
+.search-bar-form {
+  display: flex;
+  gap: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+  align-items: center;
+}
+
+.search-bar-select {
+  padding: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+  border-radius: 0.27vw; /* 4px -> (4 / 1476) * 100 */
+  border: 0.067vw solid #ccc; /* 1px -> (1 / 1476) * 100 */
+  background-color: #f9f9f9;
+  width: 15%; /* Ya es en porcentaje */
+}
+
+.search-bar-input {
+  padding: 0.54vw; /* 8px -> (8 / 1476) * 100 */
+  flex: 1; /* Mantiene proporción relativa */
+  border-radius: 0.27vw; /* 4px -> (4 / 1476) * 100 */
+  border: 0.067vw solid #ccc; /* 1px -> (1 / 1476) * 100 */
+  width: 70%; /* Ya es en porcentaje */
+}
+
+.search-bar-button {
+  padding: 0.54vw 1.08vw; /* 8px 16px -> (8 / 1476) * 100, (16 / 1476) * 100 */
+  border-radius: 0.27vw; /* 4px -> (4 / 1476) * 100 */
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9vw;
+}
