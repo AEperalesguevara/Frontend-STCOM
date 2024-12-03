@@ -24,6 +24,12 @@ a {
   margin: auto;
 }
 
+.routes-container {
+  margin-top: 5px; /* Igual que la altura del Navbar */
+  padding: 1rem; /* Opcional: agrega un relleno interno */
+  min-height: 100vh;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

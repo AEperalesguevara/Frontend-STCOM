@@ -1,26 +1,30 @@
-import Carousel from "./components/Carousel/Carousel";
-import Footer from "./components/Footer/Footer";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Searcher from "./components/Searcher/Searcher";
-import ProductGrid from "./components/ProductGrid/ProductGrid";
-import carru1 from "./assets/images/carru1.png";
-import carru2 from "./assets/images/carru2.png";
-import carru3 from "./assets/images/carru3.png";
-import OffersGrid from "./components/OffersGrid/OffersGrid";
+import ProductCategoryPage from "./pages/ProductCategoryPage/ProductCategoryPage";
+import ProductBrandPage from "./pages/ProductBrandPage/ProductBrandPage";
+import Home from "./pages/Home/Home";
+import ProductPage from "./pages/ProductPage/ProductPage";
+import Catalog from "./pages/Catalog/Catalog";
+import Nosotros from "./pages/Nosotros/Nosotros";
 
-const images = [carru1, carru2, carru3];
 const App = () => {
   return (
-    <>
-      <div className="app">
-        <Navbar />
-        <Carousel images={images} interval={2000} />
-        <Searcher />
-        <ProductGrid />
-        <OffersGrid />
-        <Footer />
+    <div className="app">
+      <Navbar />
+      <div className="routes-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route
+            path="/category/:categoryName"
+            element={<ProductCategoryPage />}
+          />
+          <Route path="/brand/:brandName" element={<ProductBrandPage />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+        </Routes>
       </div>
-    </>
+    </div>
   );
 };
 

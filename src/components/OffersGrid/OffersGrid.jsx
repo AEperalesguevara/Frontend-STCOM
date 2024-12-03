@@ -1,60 +1,21 @@
+import { products } from "../../assets/assets"; // Importa los productos de tu API
 import "./OffersGrid.css";
-
-const products = [
-  {
-    id: 1,
-    name: "Laptop Gamer",
-    brand: "HP",
-    description:
-      "Laptop potente con procesador Intel Core i7 y gráfica NVIDIA RTX.",
-    price: "$1,200.00",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 2,
-    name: "Smartphone",
-    brand: "Samsung",
-    description: "Galaxy S23 con pantalla AMOLED y triple cámara.",
-    price: "$999.99",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 3,
-    name: "Auriculares Bluetooth",
-    brand: "Sony",
-    description: "Auriculares con cancelación activa de ruido y sonido Hi-Fi.",
-    price: "$199.99",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 4,
-    name: "Monitor 4K",
-    brand: "Dell",
-    description: "Monitor UHD de 27 pulgadas ideal para gaming y trabajo.",
-    price: "$450.00",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 5,
-    name: "Smartwatch",
-    brand: "Apple",
-    description: "Apple Watch Series 8 con seguimiento de salud avanzada.",
-    price: "$499.99",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 6,
-    name: "Tablet",
-    brand: "Lenovo",
-    description: "Tablet ligera con pantalla Full HD y gran batería.",
-    price: "$299.99",
-    image: "https://via.placeholder.com/150",
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 const OffersGrid = () => {
+  // Filtra los productos que están en oferta
+  const onSaleProducts = products.filter((product) => product.is_on_sale);
+
+  // Función para mezclar los productos aleatoriamente
+  const getRandomProducts = () => {
+    const shuffled = [...onSaleProducts].sort(() => Math.random() - 0.5); // Mezcla aleatoriamente
+    return shuffled.slice(0, 4); // Devuelve solo los primeros 4 productos
+  };
+
+  const navigate = useNavigate();
+
   const handleSeeMore = () => {
-    alert("¡Redirigiendo a más productos!");
+    navigate("/catalog#"); // Redirige a /catalog
   };
 
   return (
@@ -63,17 +24,19 @@ const OffersGrid = () => {
         Ofertas
       </h1>
       <div className="product-grid">
-        {products.slice(0, 4).map((product) => (
-          <div className="product-card" key={product.id}>
+        {getRandomProducts().map((product) => (
+          <div className="product-card" key={product.product_id}>
             <img
-              src={product.image}
-              alt={product.name}
+              src={product.product_image}
+              alt={product.product_name}
               className="product-image"
             />
-            <h3 className="product-name">{product.name}</h3>
-            <p className="product-brand">{product.brand}</p>
-            <p className="product-description">{product.description}</p>
-            <p className="product-price">{product.price}</p>
+            <h3 className="product-name">{product.product_name}</h3>
+            <p className="product-brand">{product.product_category}</p>
+            <p className="product-description">{product.product_desc}</p>
+            <p className="product-price">{`$${product.product_price.toFixed(
+              2
+            )}`}</p>
           </div>
         ))}
       </div>

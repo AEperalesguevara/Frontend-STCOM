@@ -14,8 +14,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-bottom">
         <div className="navbar-links">
-          <a href="/home">Inicio</a>
-          <a href="/about">Nosotros</a>
+          <a href="/">Inicio</a>
+          <a href="/nosotros">Nosotros</a>
           <a href="/catalog">Catalogo</a>
           <a href="/technical-service">Servicio Técnico</a>
           <a href="/offers">Ofertas</a>

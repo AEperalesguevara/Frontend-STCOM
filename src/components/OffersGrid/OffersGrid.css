@@ -10,12 +10,16 @@
 
 .product-card {
   background-color: #fff;
-  border: 0.067vw solid #e0e0e0; /* 1px -> (1 / 1476) * 100 */
-  border-radius: 0.54vw; /* 8px -> (8 / 1476) * 100 */
-  padding: 1.08vw; /* 16px -> (16 / 1476) * 100 */
+  border: 0.067vw solid #e0e0e0;
+  border-radius: 0.54vw;
+  padding: 1.08vw;
   text-align: center;
-  box-shadow: 0 0.135vw 0.27vw rgba(0, 0, 0, 0.1); /* 2px, 4px -> (2 / 1476) * 100, (4 / 1476) * 100 */
+  box-shadow: 0 0.135vw 0.27vw rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 28vw; /* Establece una altura mínima para la tarjeta */
 }
 
 .product-card:hover {
@@ -23,10 +27,12 @@
 }
 
 .product-image {
-  max-width: 10vw; /* Queda igual */
-  height: auto;
+  width: 10vw; /* Mantiene el tamaño proporcional */
+  height: 10vw; /* Asegura que la imagen siempre tenga el mismo tamaño */
+  object-fit: cover; /* Ajusta la imagen sin distorsionarla */
   border-radius: 0.54vw; /* 8px -> (8 / 1476) * 100 */
-  margin-bottom: 0.81vw; /* 12px -> (12 / 1476) * 100 */
+  margin-bottom: 1.08vw; /* Espacio para el texto */
+  align-self: center; /* Centra la imagen dentro del contenedor */
 }
 
 .product-name {
@@ -59,7 +65,7 @@
   padding: 0.4vw 0.81vw; /* 0.6em 1.2em convertido */
   font-size: 1em; /* Mantiene el valor relativo */
   font-weight: 500;
-  background-color: #646cff;
+  background-color: #005bd1;
   color: white;
   cursor: pointer;
   transition: background-color 0.25s;
@@ -67,5 +73,5 @@
 }
 
 .see-more-button:hover {
-  background-color: #535bf2;
+  background-color: #2b87ff;
 }
