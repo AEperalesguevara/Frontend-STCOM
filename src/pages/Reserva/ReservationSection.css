@@ -1,0 +1,165 @@
+.reservation-section {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 100%;
+  border: 5px solid rgba(192, 192, 192, 0.164); /* Borde blanco de 5px */
+  box-sizing: border-box; /* Asegura que el borde esté dentro del tamaño definido */
+  border-radius: 1%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.reservation-image {
+  flex: 1;
+  background: linear-gradient(to bottom, #1b1b1b 0%, #000000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reservation-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #1b1b1b 0%, #000000 100%);
+  padding: 20px;
+  box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-form {
+  width: 100%;
+  max-width: 27vw;
+}
+
+.reservation-form h2 {
+  text-align: center;
+  font-family: "Basker";
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 3.5vw;
+  color: #ffffff;
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+.reservation-form label {
+  font-size: 2vw;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.reservation-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #80c0dd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.reservation-form button {
+  width: 100%;
+  max-width: 20vw;
+  margin-left: 3.5vw;
+  margin-right: 3.5vw;
+  padding: 15px;
+  background-color: #0f38bd;
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-align: center;
+  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.reservation-form button:hover {
+  background-color: #ffb937;
+  color: rgb(12, 12, 0);
+}
+
+.reservation-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+@media screen and (max-width: 800px) {
+  .reservation-section {
+    flex-direction: column; /* Cambia de fila a columna */
+    margin-bottom: 40px;
+  }
+
+  .reservation-image,
+  .reservation-form-container {
+    flex: none; /* Resetea el tamaño flexible para que ocupen toda la fila */
+    width: 100%; /* Ambos elementos ocuparán el ancho completo */
+  }
+
+  .reservation-image img {
+    border-radius: 0; /* Opcional: elimina el redondeo para mejor adaptación */
+  }
+
+  .reservation-form {
+    max-width: 90%; /* Ajusta el ancho máximo del formulario para pantallas pequeñas */
+  }
+
+  .reservation-form button {
+    max-width: 100%; /* Botón ocupa todo el ancho */
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .reservation-form h2 {
+    text-align: center;
+    font-family: "Basker";
+    margin-bottom: 20px;
+    font-size: 7vw;
+    color: #ffffff;
+    margin-bottom: 40px;
+    font-weight: 800;
+  }
+
+  .reservation-form label {
+    font-size: 6vw;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+}
+
+@font-face {
+  font-family: "Basker";
+  src: url("./fonts/LibreBaskerville-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Basker";
+  src: url("./fonts/LibreBaskerville-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Basker";
+  src: url("./fonts/LibreBaskerville-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}

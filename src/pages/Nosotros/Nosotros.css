@@ -38,7 +38,8 @@
 .nosotros-text {
   flex: 1; /* El texto ocupa el espacio restante */
   max-width: 1000px;
-  margin-left: 80px;
+  margin-left: 10px;
+  margin-right: 10px;
   text-align: justify;
 }
 

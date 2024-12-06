@@ -6,25 +6,40 @@ import Home from "./pages/Home/Home";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Catalog from "./pages/Catalog/Catalog";
 import Nosotros from "./pages/Nosotros/Nosotros";
+import ReservationSection from "./pages/Reserva/ReservationSection";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AuthProvider from "./Context/AuthContext";
+import Admin from "./pages/Admin/Admin";
 
 const App = () => {
   return (
-    <div className="app">
-      <Navbar />
-      <div className="routes-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route
-            path="/category/:categoryName"
-            element={<ProductCategoryPage />}
-          />
-          <Route path="/brand/:brandName" element={<ProductBrandPage />} />
-          <Route path="/nosotros" element={<Nosotros />} />
-        </Routes>
+    <AuthProvider>
+      <div className="app">
+        <Navbar />
+        <div className="routes-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <Admin />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route
+              path="/category/:categoryName"
+              element={<ProductCategoryPage />}
+            />
+            <Route path="/brand/:brandName" element={<ProductBrandPage />} />
+            <Route path="/nosotros" element={<Nosotros />} />
+            <Route path="/service" element={<ReservationSection />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </AuthProvider>
   );
 };
 

@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { products } from "../../assets/assets";
 import "./ProductCategoryPage.css";
+
 const ProductCategoryPage = () => {
   const { categoryName } = useParams();
   console.log(`Categoría seleccionada: ${categoryName}`);
@@ -15,7 +16,11 @@ const ProductCategoryPage = () => {
         {filteredProducts.map((product) => (
           <div key={product.product_id} className="product-item">
             <img src={product.product_image} alt={product.product_name} />
-            <h3>{product.product_name}</h3>
+            <h3>
+              <Link to={`/product/${product.product_id}`}>
+                {product.product_name}
+              </Link>
+            </h3>
             <p>{product.product_desc}</p>
             <p>${product.product_price}</p>
             {product.is_on_sale && <span>En oferta</span>}

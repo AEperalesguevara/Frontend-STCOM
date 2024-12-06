@@ -31,6 +31,8 @@ import razer from "./razer_logo.png";
 import logitech from "./logitech_logo.png";
 import sony from "./sony_logo.png";
 import us from "./us.png";
+import defaultProfile from "./defaultProfile.png";
+import st from "./st.png";
 export const assets = {
   pc_1,
   pc_2,
@@ -55,6 +57,8 @@ export const assets = {
   Instagramlogo,
   Xlogo,
   us,
+  defaultProfile,
+  st,
 };
 
 export const categories = [
