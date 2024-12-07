@@ -33,6 +33,8 @@ import sony from "./sony_logo.png";
 import us from "./us.png";
 import defaultProfile from "./defaultProfile.png";
 import st from "./st.png";
+import upload_area from "./upload_area.png";
+
 export const assets = {
   pc_1,
   pc_2,
@@ -59,6 +61,7 @@ export const assets = {
   us,
   defaultProfile,
   st,
+  upload_area,
 };
 
 export const categories = [

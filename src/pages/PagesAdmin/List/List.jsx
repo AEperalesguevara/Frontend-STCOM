@@ -1,31 +1,41 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "./List.css";
 
 const List = () => {
-  const url = "https://backend-central-production-f267.up.railway.app";
+  const url = "http://localhost:3000";
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/food/list`);
-    if (response.data.success) {
-      setList(response.data.data);
-    } else {
-      toast.error("Error");
+    try {
+      const response = await axios.get(`${url}/api/products`);
+      if (response.data.success) {
+        setList(response.data.products);
+      } else {
+        toast.error("Error al obtener productos");
+      }
+    } catch (error) {
+      console.error("Error al conectar con el servidor:", error);
+      toast.error("Fallo al conectar con el servidor");
     }
   };
 
-  const removeFood = async (foodId) => {
-    const response = await axios.post(`${url}/api/food/remove`, {
-      id: foodId,
-    });
-    await fetchList();
-    if (response.data.success) {
-      toast.success(response.data.message);
-    } else {
-      toast.error("Error");
+  const removeProduct = async (productId) => {
+    try {
+      const response = await axios.post(`${url}/api/products/remove`, {
+        id: productId,
+      });
+      if (response.data.success) {
+        await fetchList();
+        toast.success(response.data.message);
+      } else {
+        toast.error("Error al eliminar producto");
+      }
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+      toast.error("Error en el servidor al eliminar producto");
     }
   };
 
@@ -35,28 +45,33 @@ const List = () => {
 
   return (
     <div className="list add flex-col">
-      <p>Lista de todos los Productos</p>
+      <p>Lista de Productos Tecnológicos</p>
       <div className="list-table">
         <div className="list-table-format title">
           <b>Imagen</b>
           <b>Nombre</b>
           <b>Categoría</b>
+          <b>Marca</b>
           <b>Precio</b>
-          <b>Proceso</b>
+          <b>Descripción</b>
+          <b>Acción</b>
         </div>
-        {list.map((item, index) => {
-          return (
-            <div key={index} className="list-table-format">
-              <img src={item.image} alt="" />
-              <p>{item.name}</p>
-              <p>{item.category}</p>
-              <p>{item.price}</p>
-              <p className="cursor" onClick={() => removeFood(item.id)}>
-                x
-              </p>
-            </div>
-          );
-        })}
+        {list.map((product) => (
+          <div key={product.id} className="list-table-format">
+            <img
+              src={`http://localhost:3000/${product.image}`}
+              alt={product.name}
+            />
+            <p>{product.name}</p>
+            <p>{product.category}</p>
+            <p>{product.brand}</p>
+            <p>${product.price}</p>
+            <p>{product.description}</p>
+            <p className="cursor" onClick={() => removeProduct(product.id)}>
+              ❌
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );

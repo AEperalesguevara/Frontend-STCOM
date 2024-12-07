@@ -1,30 +1,60 @@
+/* Estilo general del panel */
 .dashboard {
-  width: 90%;
-  margin: auto;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f5f5f5; /* Fondo gris claro para el área general */
 }
 
-.accordion {
-  border: 1px solid #ddd;
-  border-radius: 5px;
+/* Estilo del título principal */
+.dashboard h1 {
+  text-align: center;
+  color: #ffffff; /* Color oscuro para el título */
+  margin-bottom: 20px;
 }
 
+/* Estilo de cada elemento del acordeón */
 .accordion-item {
-  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  border: 1px solid #333; /* Bordes oscuros */
+  border-radius: 5px;
+  background-color: #fff; /* Fondo blanco */
+  overflow: hidden;
 }
 
+/* Encabezados del acordeón */
 .accordion-header {
-  padding: 10px 15px;
-  background: #f5f5f5;
+  padding: 10px 20px;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
+  align-items: center;
+  background-color: #eaeaea; /* Fondo claro para los encabezados */
+  color: #333; /* Texto oscuro */
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
+.accordion-header h2 {
+  margin: 0;
+  color: #333; /* Asegura que el texto sea oscuro */
+  font-size: 1.2em; /* Tamaño de fuente ligeramente mayor */
+}
+
+/* Efecto hover en los encabezados */
 .accordion-header:hover {
-  background: #e0e0e0;
+  background-color: #ddd; /* Fondo más oscuro al pasar el mouse */
 }
 
+/* Contenido desplegable */
 .accordion-content {
-  padding: 15px;
-  background: #fff;
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco para el contenido */
+  color: #333; /* Texto oscuro */
+  border-top: 1px solid #ccc; /* Línea para separar contenido del encabezado */
+}
+
+/* Iconos de flecha */
+.accordion-header span {
+  font-size: 1.2em;
+  color: #333; /* Color oscuro para las flechas */
 }

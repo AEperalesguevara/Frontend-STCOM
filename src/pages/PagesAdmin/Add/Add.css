@@ -1,35 +1,90 @@
-.add{
-    width: 70%;
-    margin-left: max(5vw,25px);
-    margin-top: 50px;
-    color: #6D6D6D;
-    font-size: 16px;
+.add {
+  width: 70%;
+  margin-left: max(5vw, 25px);
+  margin-top: 50px;
+  color: #6d6d6d;
+  font-size: 16px;
 }
-.add form{
-   gap: 20px;
+.add form {
+  gap: 20px;
 }
-.add-img-upload img{
-    width: 120px;
+.add-img-upload img {
+  width: 200px;
+  margin-bottom: 20px;
 }
-.add-product-name, .add-product-description{
-    width: max(40%,280px);
+.add-product-name,
+.add-product-description {
+  width: max(40%, 280px);
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
-.add-product-name input ,.add-product-description textarea{
-    padding: 10px 10px;
+.add-product-name input,
+.add-product-description textarea {
+  padding: 10px 10px;
 }
-.add-category-price{
-    display: flex;
-    gap: 30px;
+.add-category-price {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 20px;
 }
-.add-category-price select,.add-category-price input{
-    max-width: 120px;
-    padding: 10px;
+.add-category-price select,
+.add-category-price input {
+  max-width: 140px;
+  padding: 10px;
 }
-.add-btn{
-    max-width: 120px;
-    border: none;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    cursor: pointer;
+.add-btn {
+  margin-top: 20px;
+  max-width: 120px;
+  border: none;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.add-brand,
+.add-onsale {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  margin-top: 10px;
+}
+
+.add-brand p,
+.add-onsale label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.add-brand select {
+  padding: 0.8rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  max-width: 120px;
+  padding: 10px;
+}
+
+.add-brand select:focus {
+  border-color: #007bff;
+}
+
+.add-onsale input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+
+.add-onsale label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #333;
+}
+.add-btn {
+  max-width: 120px;
+  border: none;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 8px;
 }
