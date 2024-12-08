@@ -19,6 +19,7 @@
 .navbar-logo img {
   height: 8vw;
   margin-left: 2vw;
+  width: 12vw;
 }
 
 .navbar-contact {
@@ -29,7 +30,7 @@
 
 .navbar-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Alinea todo desde la izquierda */
   align-items: center;
   background-color: #0c4585;
   padding: 0.68vw 1.36vw;
@@ -42,15 +43,31 @@
   font-size: 1vw;
 }
 
-.navbar-login button {
-  width: 6vw;
-  height: 2vw;
-  font-size: 0.8vw;
-  background-color: #007bff;
-  color: white;
+.navbar-login {
+  display: flex;
+  align-items: center;
+}
+
+/* Botón del carrito */
+.cart-btn {
+  background-color: #ffeb3d;
+  color: #000;
+  font-weight: bold;
   border: none;
-  cursor: pointer;
-  margin-right: 2.04vw;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 2vw; /* Espacio entre el login y el carrito */
+  font-size: 1.1vw;
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  background-color: #fdd835;
+}
+
+.cart-btn:active {
+  transform: scale(0.95);
 }
 
 /* Perfil del Usuario */
@@ -59,6 +76,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-left: 2vw;
 }
 
 .profile-pic {
@@ -96,4 +114,45 @@
 
 .dropdown-menu button:hover {
   background: #f0f0f0;
+}
+
+/* Botón de carrito */
+.cart-btn {
+  background-color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  margin-left: 45vw; /* Espacio entre el botón y otros elementos */
+}
+
+.cart-btn:hover {
+  background-color: #bebebe;
+}
+
+.cart-btn:active {
+  transform: scale(0.95);
+}
+
+.cart-btn svg {
+  margin-right: 5px;
+}
+
+/* Navbar Bottom */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Asegurarse de que el carrito esté cerca del login y del menú */
+.navbar-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

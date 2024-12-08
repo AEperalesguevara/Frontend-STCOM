@@ -1,88 +1,55 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import "./Orders.css";
 import { toast } from "react-toastify";
 import axios from "axios";
+import "./Orders.css";
 import { assets } from "../../../assets/assets";
 
 const Order = () => {
-  const [orders, setOrders] = useState([]);
+  const [purchases, setPurchases] = useState([]);
 
-  const fetchAllOrders = async () => {
-    const response = await axios.get(
-      `https://backend-central-production-f267.up.railway.app/api/order/list`
-    );
-    if (response.data.success) {
-      setOrders(response.data.data.reverse());
-    } else {
-      toast.error("Error");
-    }
-  };
+  // Obtener todas las compras desde el backend
+  const fetchAllPurchases = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/purchase/all-purchases`
+      );
+      console.log(response.data); // Depuración
 
-  const statusHandler = async (event, orderId) => {
-    console.log(event, orderId);
-    const response = await axios.post(
-      `https://backend-central-production-f267.up.railway.app/api/order/status`,
-      {
-        orderId,
-        status: event.target.value,
+      if (response.data.success) {
+        setPurchases(response.data.data);
+        console.log("Compras actualizadas");
+      } else {
+        toast.error("Error al obtener compras");
       }
-    );
-    if (response.data.success) {
-      await fetchAllOrders();
+    } catch (error) {
+      console.error("Fallo al conectar con el servidor:", error);
+      toast.error("Fallo al conectar con el servidor");
     }
   };
 
   useEffect(() => {
-    fetchAllOrders();
+    fetchAllPurchases();
   }, []);
-
   return (
     <div className="order add">
-      <h3>Página de Pedidos</h3>
+      <h3>Compras Realizadas</h3>
       <div className="order-list">
-        {orders.map((order, index) => (
+        {purchases.map((purchase, index) => (
           <div key={index} className="order-item">
-            <img src={assets.STCOMlogo} alt="" />
+            <img src={assets.STCOMlogo} alt="Purchase" />
             <div>
-              <p className="order-item-food">
-                {order.items.map((item, index) => {
-                  if (index === order.items.length - 1) {
-                    return item.name + " x " + item.quantity;
-                  } else {
-                    return item.name + " x " + item.quantity + ", ";
-                  }
-                })}
+              <p>
+                <strong>Fecha:</strong>{" "}
+                {new Date(purchase.date).toLocaleDateString()}
               </p>
-              <p className="order-item-name">
-                {order.address.firstName + " " + order.address.lastName}
+              <p>
+                <strong>Precio Total:</strong> ${purchase.totalPrice}
               </p>
-              <div className="order-item-address">
-                <p>{order.address.street + ","}</p>
-                <p>
-                  {order.address.city +
-                    ", " +
-                    order.address.state +
-                    ", " +
-                    order.address.country +
-                    ", " +
-                    order.address.zipcode}
-                </p>
-              </div>
-              <p className="order-item-phone">{order.address.phone}</p>
+              <p>
+                <strong>Usuario ID:</strong> {purchase.userId}
+              </p>
             </div>
-            <p>Items : {order.items.length}</p>
-            <p>{order.amount}</p>
-            <select
-              onChange={(e) => statusHandler(e, order.id)}
-              value={order.status}
-              name=""
-              id=""
-            >
-              <option value="Food Processing">Food Processing</option>
-              <option value="Out for delivery">Out for delivery</option>
-              <option value="Delivered">Delivered</option>
-            </select>
           </div>
         ))}
       </div>

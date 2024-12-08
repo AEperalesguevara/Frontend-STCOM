@@ -9,7 +9,7 @@ const ReservationSection = () => {
     phone: "",
     date: "",
     time: "",
-    guests: 1,
+    desc: "",
   });
 
   const handleChange = (e) => {

@@ -3,50 +3,56 @@ import "./Reservas.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { assets } from "../../../assets/assets";
-const Reservas = () => {
-  const [reservations, setReservations] = useState([]);
 
-  const fetchAllReservations = async () => {
+const Reservas = () => {
+  const [serviceReservations, setServiceReservations] = useState([]);
+
+  const fetchAllServiceReservations = async () => {
     try {
-      const response = await axios.get(
-        "https://backend-central-production-f267.up.railway.app/api/reservation"
-      );
+      const response = await axios.get("http://localhost:3000/api/reservation");
       if (response.data.success) {
-        // Cambié `response.reservations.success` por `response.data.success`
-        setReservations(response.data.reservations.reverse()); // Cambié `response.reservations.data` por `response.data.reservations`
+        setServiceReservations(response.data.reservations.reverse());
       } else {
-        toast.error("Error al obtener las reservas");
+        toast.error("Error al obtener las reservas de servicio técnico");
       }
     } catch (error) {
-      toast.error("Error en la conexión con el servidor");
+      if (error) {
+        toast.error("Error en la conexión con el servidor");
+      }
     }
   };
 
   useEffect(() => {
-    fetchAllReservations();
+    fetchAllServiceReservations();
   }, []);
 
   return (
-    <div className="reservation add">
-      <h3>Página de Reservas</h3>
-      <div className="reservation-list">
-        {reservations.map((reservation, index) => (
-          <div key={index} className="reservation-item">
+    <div className="service-reservation">
+      <h3>Reservas de Servicio Técnico</h3>
+      <div className="service-reservation-list">
+        {serviceReservations.map((reservation, index) => (
+          <div key={index} className="service-reservation-item">
             <img
               src={assets.STCOMlogo}
               alt=""
-              className="reservation-item-icon"
+              className="service-reservation-item-icon"
             />
             <div>
-              <p className="reservation-item-name">{reservation.name}</p>
-              <p className="reservation-item-email">{reservation.email}</p>
-              <p className="reservation-item-phone">{reservation.phone}</p>
-              <p className="reservation-item-date">
+              <p className="service-reservation-item-name">
+                {reservation.name}
+              </p>
+              <p className="service-reservation-item-email">
+                {reservation.email}
+              </p>
+              <p className="service-reservation-item-phone">
+                {reservation.phone}
+              </p>
+              <p className="service-reservation-item-date">
                 {new Date(reservation.date).toLocaleDateString()} a las{" "}
                 {reservation.time}
               </p>
-              <p className="reservation-item-guests">
-                Número de invitados: {reservation.guests}
+              <p className="service-reservation-item-desc">
+                Descripción: {reservation.desc}
               </p>
             </div>
           </div>

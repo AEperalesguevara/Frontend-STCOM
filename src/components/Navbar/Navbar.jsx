@@ -75,6 +75,11 @@ const Navbar = () => {
           <a href="/service">Servicio Técnico</a>
         </div>
 
+        {/* Botón del carrito */}
+        <button className="cart-btn" onClick={() => navigate("/cart")}>
+          🛒 Carrito
+        </button>
+
         <div className="navbar-login">
           {isLoggedIn ? (
             <div className="profile-section" onClick={toggleDropdown}>

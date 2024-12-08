@@ -1,49 +1,62 @@
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext"; // Importa el contexto
 import { products } from "../../assets/assets";
 import "./ProductPage.css";
+import { CartContext } from "../../Context/CartContext";
 
 function ProductPage() {
-  const { id } = useParams(); // Obtén el ID desde la URL
-  const product = products.find((p) => p.product_id === Number(id)); // Busca el producto por ID
+  const { addToCart } = useContext(CartContext); // Obtener la función del contexto
+  const { id } = useParams();
+  const product = products.find((p) => p.product_id === Number(id));
+  const { user } = useContext(AuthContext); // Obtén el usuario desde el contexto
+  const [quantity, setQuantity] = useState(1);
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    console.log("Producto añadido al carrito:", product, "Cantidad:", quantity);
+  };
+  console.log("Usuario desde el contexto:", user); // Verifica el valor de user
 
   if (!product) {
+    console.log("Producto no encontrado para el ID:", id);
     return <h1>Producto no encontrado</h1>;
   }
+
+  const handleQuantityChange = (delta) => {
+    setQuantity((prev) => Math.max(1, prev + delta));
+  };
 
   return (
     <div className="product-page">
       <h1>{product.product_name}</h1>
       <div className="content">
-        {/* Imagen del producto */}
         <div>
           <img src={product.product_image} alt={product.product_name} />
           <p className="price">
             <span>Precio:</span> ${product.product_price}
           </p>
         </div>
-
-        {/* Descripción del producto */}
         <div className="details">
           <p>{product.product_desc}</p>
         </div>
       </div>
 
-      {/* Tabla de características */}
-      <table>
-        <thead>
-          <tr>
-            <th>Característica</th>
-            <th>Detalle</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* Por simplicidad, no hay características específicas en la API */}
-          <tr>
-            <td>Categoría</td>
-            <td>{product.product_category}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="purchase-section">
+        {user ? (
+          <>
+            <div className="add-to-cart">
+              <button onClick={() => handleQuantityChange(-1)}>-</button>
+              <span>{quantity}</span>
+              <button onClick={() => handleQuantityChange(1)}>+</button>
+              <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                Añadir al carrito
+              </button>
+            </div>
+          </>
+        ) : (
+          <p className="login-message">Inicia sesión para comprar</p>
+        )}
+      </div>
     </div>
   );
 }
