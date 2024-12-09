@@ -28,7 +28,7 @@ const CartPage = () => {
 
   const handleConfirmOrder = async () => {
     try {
-      // Enviar la solicitud para crear la sesión de Stripe Checkout
+      // Enviar la solicitud para  la sesión de Stripe Checkout
       const response = await fetch(
         "https://backend-stcom.up.railway.app/payment/create-checkout-session",
         {
