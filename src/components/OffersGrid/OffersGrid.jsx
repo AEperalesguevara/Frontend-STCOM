@@ -1,21 +1,36 @@
-import { products } from "../../assets/assets"; // Importa los productos de tu API
+import { useState, useEffect } from "react";
 import "./OffersGrid.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const OffersGrid = () => {
-  // Filtra los productos que están en oferta
-  const onSaleProducts = products.filter((product) => product.is_on_sale);
-
-  // Función para mezclar los productos aleatoriamente
-  const getRandomProducts = () => {
-    const shuffled = [...onSaleProducts].sort(() => Math.random() - 0.5); // Mezcla aleatoriamente
-    return shuffled.slice(0, 4); // Devuelve solo los primeros 4 productos
-  };
+  const [products, setProducts] = useState([]);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://backend-stcom.up.railway.app/api/products"
+        );
+        const onSaleProducts = data.filter((product) => product.is_on_sale);
+        setProducts(onSaleProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const getRandomProducts = () => {
+    const shuffled = [...products].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 4);
+  };
+
   const handleSeeMore = () => {
-    navigate("/catalog#"); // Redirige a /catalog
+    navigate("/catalog#");
   };
 
   return (
