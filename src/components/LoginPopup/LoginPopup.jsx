@@ -31,8 +31,8 @@ const LoginPopup = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = isLogin
-      ? "http://localhost:3000/api/auth/login"
-      : "http://localhost:3000/api/auth/register";
+      ? "https://backend-stcom.vercel.app//api/auth/login"
+      : "https://backend-stcom.vercel.app//api/auth/register";
 
     try {
       const response = await axios.post(url, formData);
