@@ -43,7 +43,7 @@ const CheckoutFormComponent = ({ totalAmount }) => {
     const createPaymentIntent = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/create-payment-intent",
+          "https://backend-stcom.up.railway.app/create-payment-intent",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

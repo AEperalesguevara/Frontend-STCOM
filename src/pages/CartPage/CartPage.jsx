@@ -30,7 +30,7 @@ const CartPage = () => {
     try {
       // Enviar la solicitud para crear la sesión de Stripe Checkout
       const response = await fetch(
-        "http://localhost:3000/payment/create-checkout-session",
+        "https://backend-stcom.up.railway.app/payment/create-checkout-session",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -61,15 +61,18 @@ const CartPage = () => {
       hasOrderBeenSaved.current = true; // Marcamos que la orden ya se guardó
       console.log("Pago exitoso, guardando la orden...");
 
-      fetch("http://localhost:3000/api/purchase/create-purchase", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          totalPrice,
-          userId: userData.id, // Coloca tu ID real del usuario aquí
-          cart: sanitizedCart,
-        }),
-      })
+      fetch(
+        "https://backend-stcom.up.railway.app/api/purchase/create-purchase",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            totalPrice,
+            userId: userData.id, // Coloca tu ID real del usuario aquí
+            cart: sanitizedCart,
+          }),
+        }
+      )
         .then((res) => res.json())
         .then((purchaseData) => {
           console.log("Orden guardada en la base de datos:", purchaseData);

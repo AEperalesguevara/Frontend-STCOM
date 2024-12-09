@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "./List.css";
 
 const List = () => {
-  const url = "http://localhost:3000";
+  const url = "https://backend-stcom.up.railway.app";
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
@@ -59,7 +59,7 @@ const List = () => {
         {list.map((product) => (
           <div key={product.id} className="list-table-format">
             <img
-              src={`http://localhost:3000/${product.image}`}
+              src={`https://backend-stcom.up.railway.app/${product.image}`}
               alt={product.name}
             />
             <p>{product.name}</p>

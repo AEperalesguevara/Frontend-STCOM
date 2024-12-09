@@ -9,7 +9,9 @@ const Reservas = () => {
 
   const fetchAllServiceReservations = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/reservation");
+      const response = await axios.get(
+        "https://backend-stcom.up.railway.app/api/reservation"
+      );
       if (response.data.success) {
         setServiceReservations(response.data.reservations.reverse());
       } else {

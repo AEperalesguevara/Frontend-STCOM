@@ -11,7 +11,7 @@ const Order = () => {
   const fetchAllPurchases = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/purchase/all-purchases`
+        `https://backend-stcom.up.railway.app/api/purchase/all-purchases`
       );
       console.log(response.data); // Depuración
 

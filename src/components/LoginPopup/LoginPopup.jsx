@@ -58,7 +58,7 @@ const LoginPopup = ({ onClose }) => {
         // Realiza el login automático después de registrar
         try {
           const loginResponse = await axios.post(
-            "http://localhost:3000/api/auth/login",
+            "https://backend-stcom.up.railway.app/api/auth/login",
             {
               email: formData.email,
               password: formData.password,

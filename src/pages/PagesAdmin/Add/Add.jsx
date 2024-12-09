@@ -35,7 +35,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/products/add`,
+        `https://backend-stcom.up.railway.app/api/products/add`,
         formData
       );
       if (response.data.success) {

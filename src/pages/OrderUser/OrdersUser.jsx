@@ -19,7 +19,7 @@ const OrderUser = () => {
     try {
       if (user && user.id) {
         const response = await axios.get(
-          `http://localhost:3000/api/purchase/user-purchases/${user.id}`
+          `https://backend-stcom.up.railway.app/api/purchase/user-purchases/${user.id}`
         );
 
         if (response.data) {
