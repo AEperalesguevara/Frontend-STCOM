@@ -48,8 +48,8 @@
 /* Contenido desplegable */
 .accordion-content {
   padding: 20px;
-  background-color: #3d3d3d; /* Fondo blanco para el contenido */
-  color: #ffffff; /* Texto oscuro */
+  background-color: #ffffff; /* Fondo blanco para el contenido */
+  color: #0300ac; /* Texto oscuro */
   border-top: 1px solid #ccc; /* Línea para separar contenido del encabezado */
 }
 .accordion-content h3 {
