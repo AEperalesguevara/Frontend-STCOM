@@ -18,44 +18,36 @@ const Add = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    console.log("Formulario enviado");
 
     if (!image) {
       toast.error("Por favor selecciona una imagen.");
       return null;
     }
 
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("description", data.description);
-    formData.append("price", Number(data.price));
-    formData.append("category", data.category);
-    formData.append("brand", data.brand);
-    formData.append("isOnSale", data.isOnSale);
-    formData.append("image", image);
-
     try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("description", data.description);
+      formData.append("price", Number(data.price));
+      formData.append("category", data.category);
+      formData.append("brand", data.brand);
+      formData.append("isOnSale", data.isOnSale);
+      formData.append("image", image);
+
       const response = await axios.post(
         `https://backend-stcom.up.railway.app/api/products/add`,
         formData
       );
+
       if (response.data.success) {
         toast.success(response.data.message);
-        setData({
-          name: "",
-          description: "",
-          price: "",
-          category: categories[0].category_name,
-          brand: brands[0].brand_name,
-          isOnSale: false,
-        });
-        setImage(false);
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
-      if (error) {
-        toast.error("Error al agregar el producto.");
-      }
+      console.error("Error al enviar el formulario:", error);
+      toast.error("Error al agregar el producto.");
     }
   };
 
