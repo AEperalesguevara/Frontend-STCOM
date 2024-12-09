@@ -1,35 +1,47 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import "./Orders.css";
+import { AuthContext } from "../../Context/AuthContext";
+import "./OrdersUser.css";
 
-const Order = () => {
+const OrderUser = () => {
   const [purchases, setPurchases] = useState([]);
+  const { user } = useContext(AuthContext); // Obtiene el usuario autenticado
 
-  // Obtener todas las compras desde el backend
-  const fetchAllPurchases = async () => {
+  // Obtener compras solo para el usuario autenticado
+  const fetchUserPurchases = async () => {
+    if (!user || !user.id) {
+      console.error("Usuario no autenticado o ID faltante.");
+      return;
+    }
+    console.log("Usuario:", user);
+
     try {
-      const response = await axios.get(
-        `http://localhost:3000/api/purchase/all-purchases`
-      );
-      console.log(response.data); // Depuración
+      if (user && user.id) {
+        const response = await axios.get(
+          `http://localhost:3000/api/purchase/user-purchases/${user.id}`
+        );
 
-      if (response.data.success) {
-        setPurchases(response.data.data);
-        console.log("Compras actualizadas");
-      } else {
-        toast.error("Error al obtener compras");
+        if (response.data) {
+          setPurchases(response.data);
+          console.log("Compras del usuario actual actualizadas");
+          console.log(response.data);
+        } else {
+          toast.error("No se encontraron compras");
+        }
       }
     } catch (error) {
-      console.error("Fallo al conectar con el servidor:", error);
-      toast.error("Fallo al conectar con el servidor");
+      console.error("Fallo al obtener compras:", error);
+      toast.error("Error al conectar con el servidor");
     }
   };
 
   useEffect(() => {
-    fetchAllPurchases();
-  }, []);
+    if (user && user.id) {
+      fetchUserPurchases();
+    }
+  }, [user]);
+
   return (
     <div className="order add">
       <h3>Compras Realizadas</h3>
@@ -43,9 +55,6 @@ const Order = () => {
             </p>
             <p>
               <strong>Total:</strong> ${purchase.totalPrice}
-            </p>
-            <p>
-              <strong>Usuario ID:</strong> {purchase.userId}
             </p>
 
             <div className="order-products">
@@ -67,4 +76,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrderUser;

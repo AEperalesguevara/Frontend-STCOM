@@ -1,64 +1,110 @@
 .product-page {
-  background-color: #121212;
-  color: white;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  border-radius: 8px;
   max-width: 800px;
   margin: 40px auto;
+  background-color: #1e1e1e; /* Fondo tipo tarjeta */
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  color: #f5f5f5;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.content img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.product-page h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-align: center; /* Centra el título */
-}
-
-.product-page .content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.product-page img {
-  max-width: 300px;
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.product-page .details {
-  flex: 1; /* Hace que la descripción ocupe el espacio restante */
-}
-
-.product-page .details p {
-  font-size: 1.2rem;
-  margin: 5px 0;
-}
-
-.product-page .details span {
-  font-weight: bold;
-}
-
-.product-page .price {
+.content .price {
   font-size: 1.5rem;
+  color: #ffffff; /* Color dorado para resaltar el precio */
   margin-top: 10px;
 }
 
-.product-page table {
-  width: 100%;
-  border-collapse: collapse;
+.details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.details p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.purchase-section {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-.product-page table th,
-.product-page table td {
-  border: 1px solid #333;
-  padding: 10px;
-  text-align: left;
+.add-to-cart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.product-page table th {
-  background-color: #1f1f1f;
+.add-to-cart button {
+  background-color: #094aac; /* Verde para botones interactivos */
+  color: #ffffff;
+  font-size: 1rem;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart button:hover {
+  background-color: #00c0e2;
+}
+
+.add-to-cart span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.add-to-cart-btn {
+  background-color: #007bff; /* Botón principal */
+  padding: 10px 20px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+}
+
+.login-message {
+  color: #ff6b6b; /* Rojo suave para alertas */
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .details {
+    text-align: left;
+    max-width: 400px;
+    margin-left: 20px;
+  }
 }

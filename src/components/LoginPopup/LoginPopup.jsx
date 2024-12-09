@@ -3,6 +3,7 @@ import { useContext } from "react";
 import PropTypes from "prop-types"; // Importa prop-types
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext";
+import "./LoginPopup.css";
 
 const LoginPopup = ({ onClose }) => {
   const { setUser } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const LoginPopup = ({ onClose }) => {
     password: "",
     firstName: "",
     lastName: "",
-    role: "",
+    role: "user",
     city: "",
     identityNo: "",
     phone: "",
@@ -128,14 +129,7 @@ const LoginPopup = ({ onClose }) => {
               onChange={handleInputChange}
               required
             />
-            <input
-              type="text"
-              name="role"
-              placeholder="Rol"
-              value={formData.role}
-              onChange={handleInputChange}
-              required
-            />
+
             <input
               type="text"
               name="city"

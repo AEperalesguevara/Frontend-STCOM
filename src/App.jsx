@@ -18,6 +18,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import CartProvider from "./Context/CartContext";
 import CheckoutForm from "./components/CheckoutForm/CheckoutForm";
 import { CartContext } from "./Context/CartContext";
+import User from "./pages/User/User";
 
 const stripePromise = loadStripe(
   "pk_test_51QTQ2oRwtUUOUrvvqkcaO413p3CTwfz82eLSDMLR1BbGnXNXqZnldMyZ9hVy3jvQMhaTCKQDTEmrpUe2IWMZtqMg00aIuOZix5"
@@ -50,6 +51,7 @@ const App = () => {
                     </ProtectedRoute>
                   }
                 />
+                <Route path="/userpanel" element={<User />} />
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/catalog" element={<Catalog />} />
                 <Route

@@ -9,12 +9,6 @@ const Carousel = ({ images, interval = 3000 }) => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
   useEffect(() => {
     const autoSlide = setInterval(() => {
       nextSlide();
@@ -43,14 +37,6 @@ const Carousel = ({ images, interval = 3000 }) => {
             }}
           />
         ))}
-      </div>
-      <div className="carousel-controls">
-        <button className="carousel-button" onClick={prevSlide}>
-          &#10094;
-        </button>
-        <button className="carousel-button" onClick={nextSlide}>
-          &#10095;
-        </button>
       </div>
     </div>
   );

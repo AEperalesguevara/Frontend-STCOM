@@ -56,6 +56,10 @@ const Navbar = () => {
     navigate("/admin");
   };
 
+  const goToUserPanel = () => {
+    navigate("/userpanel");
+  };
+
   return (
     <div className="navbar">
       <div className="navbar-top">
@@ -96,13 +100,18 @@ const Navbar = () => {
                   {user?.role === "admin" && (
                     <button onClick={goToAdminPanel}>Admin Panel</button>
                   )}
+                  {user?.role === "user" && (
+                    <button onClick={goToUserPanel}>User Panel</button>
+                  )}
 
                   <button onClick={handleLogout}>Cerrar Sesión</button>
                 </div>
               )}
             </div>
           ) : (
-            <button onClick={handleLoginClick}>Iniciar Sesión</button>
+            <button className="login" onClick={handleLoginClick}>
+              Iniciar Sesión
+            </button>
           )}
         </div>
       </div>

@@ -14,6 +14,9 @@ function ProductPage() {
   const handleAddToCart = () => {
     addToCart(product, quantity);
     console.log("Producto añadido al carrito:", product, "Cantidad:", quantity);
+    alert(
+      `¡${product.product_name} se agregó al carrito con cantidad de ${quantity}!`
+    );
   };
   console.log("Usuario desde el contexto:", user); // Verifica el valor de user
 

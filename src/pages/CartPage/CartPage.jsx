@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
+import "./CartPage.css";
 
 const CartPage = () => {
   const { cart, addToCart, removeFromCart, clearCart } =
@@ -8,7 +9,7 @@ const CartPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const hasOrderBeenSaved = useRef(false);
-
+  const userData = JSON.parse(localStorage.getItem("user")); // Obtiene el objeto del localStorage
   const sanitizedCart = cart.map((item) => ({
     ...item,
     product_image: item.product_image?.startsWith("http")
@@ -36,6 +37,7 @@ const CartPage = () => {
           body: JSON.stringify({
             cartItems: sanitizedCart,
             totalAmount: totalPrice,
+            userId: userData.id,
           }),
         }
       );
@@ -64,7 +66,8 @@ const CartPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           totalPrice,
-          userId: 1, // Coloca tu ID real del usuario aquí
+          userId: userData.id, // Coloca tu ID real del usuario aquí
+          cart: sanitizedCart,
         }),
       })
         .then((res) => res.json())
@@ -82,8 +85,8 @@ const CartPage = () => {
       <h1>Tu Carrito</h1>
 
       {cart.length === 0 ? (
-        <p>
-          Tu carrito está vacío. <Link to="/">Explorar productos</Link>
+        <p className="parrafo">
+          Tu carrito está vacío. <Link to="/catalog">Explorar productos</Link>
         </p>
       ) : (
         <>
@@ -95,7 +98,8 @@ const CartPage = () => {
                 <p>Precio: ${item.product_price}</p>
                 <p>Cantidad: {item.quantity}</p>
                 <p>Subtotal: ${item.product_price * item.quantity}</p>
-
+              </div>
+              <div className="buttons-section">
                 <div className="quantity-buttons">
                   <button onClick={() => handleQuantityChange(item, -1)}>
                     -
@@ -104,7 +108,6 @@ const CartPage = () => {
                     +
                   </button>
                 </div>
-
                 <button
                   className="remove-btn"
                   onClick={() => removeFromCart(item.product_id)}
@@ -120,7 +123,9 @@ const CartPage = () => {
           </div>
 
           {/* Botón Confirmar Orden */}
-          <button onClick={handleConfirmOrder}>Confirmar Orden</button>
+          <button className="button-with-padding" onClick={handleConfirmOrder}>
+            Confirmar Orden
+          </button>
         </>
       )}
     </div>
