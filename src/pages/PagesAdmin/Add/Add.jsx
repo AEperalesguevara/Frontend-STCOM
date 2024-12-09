@@ -42,6 +42,17 @@ const Add = () => {
 
       if (response.data.success) {
         toast.success(response.data.message);
+        setData({
+          name: "",
+          description: "",
+          price: "",
+          category: categories[0].category_name,
+          brand: brands[0].brand_name,
+          isOnSale: false,
+        });
+        setImage(false);
+
+        console.log("Formulario limpio");
       } else {
         toast.error(response.data.message);
       }
