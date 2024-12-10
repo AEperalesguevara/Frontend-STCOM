@@ -58,10 +58,7 @@ const List = () => {
         </div>
         {list.map((product) => (
           <div key={product.id} className="list-table-format">
-            <img
-              src={`https://backend-stcom.up.railway.app/${product.image}`}
-              alt={product.name}
-            />
+            <img src={`${product.image}`} alt={product.name} />
             <p>{product.name}</p>
             <p>{product.category}</p>
             <p>{product.brand}</p>
