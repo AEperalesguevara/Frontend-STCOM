@@ -14,7 +14,9 @@ const OffersGrid = () => {
         const { data } = await axios.get(
           "https://backend-stcom.up.railway.app/api/products"
         );
-        const onSaleProducts = data.filter((product) => product.on_sale);
+        const onSaleProducts = data.products.filter(
+          (product) => product.on_sale
+        );
         setProducts(onSaleProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
