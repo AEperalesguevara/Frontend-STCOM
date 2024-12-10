@@ -27,8 +27,11 @@ const CartPage = () => {
   };
 
   const handleConfirmOrder = async () => {
+    console.log("antes de try");
     try {
       // Enviar la solicitud para  la sesión de Stripe Checkout
+      console.log("despues de try");
+      console.log("Datos recibidos en la API:", sanitizedCart);
       const response = await fetch(
         "https://backend-stcom.up.railway.app/payment/create-checkout-session",
         {
@@ -43,7 +46,7 @@ const CartPage = () => {
       );
 
       const { url } = await response.json();
-
+      console.log("antes de url");
       if (url) {
         window.location.href = url; // Redireccionar al Checkout de Stripe
       }
