@@ -34,7 +34,6 @@ const ProductBrandPage = () => {
             <h3>
               <Link to={`/product/${product.id}`}>{product.name}</Link>
             </h3>
-            <p>{product.desc}</p>
             <p>${product.price}</p>
             {product.isOnSale && <span>En oferta</span>}
           </div>

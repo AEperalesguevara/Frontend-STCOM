@@ -1,46 +1,78 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthContext"; // Importa el contexto
-import { products } from "../../assets/assets";
-import "./ProductPage.css";
+import { AuthContext } from "../../Context/AuthContext";
 import { CartContext } from "../../Context/CartContext";
+import "./ProductPage.css";
 
 function ProductPage() {
-  const { addToCart } = useContext(CartContext); // Obtener la función del contexto
+  const { addToCart } = useContext(CartContext);
   const { id } = useParams();
-  const product = products.find((p) => p.product_id === Number(id));
-  const { user } = useContext(AuthContext); // Obtén el usuario desde el contexto
+  const { user } = useContext(AuthContext);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const handleAddToCart = () => {
-    addToCart(product, quantity);
-    console.log("Producto añadido al carrito:", product, "Cantidad:", quantity);
-    alert(
-      `¡${product.product_name} se agregó al carrito con cantidad de ${quantity}!`
-    );
-  };
-  console.log("Usuario desde el contexto:", user); // Verifica el valor de user
 
-  if (!product) {
-    console.log("Producto no encontrado para el ID:", id);
-    return <h1>Producto no encontrado</h1>;
-  }
+  useEffect(() => {
+    // Solicita el producto a la API
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `https://backend-stcom.up.railway.app/api/products/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Error al obtener el producto");
+        }
+        const data = await response.json();
+        const foundProduct = data.products.find((p) => p.id === Number(id));
+        setProduct(foundProduct);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product, quantity);
+      console.log(
+        "Producto añadido al carrito:",
+        product,
+        "Cantidad:",
+        quantity
+      );
+      alert(
+        `¡${product.name} se agregó al carrito con cantidad de ${quantity}!`
+      );
+    }
+  };
 
   const handleQuantityChange = (delta) => {
     setQuantity((prev) => Math.max(1, prev + delta));
   };
 
+  if (loading) return <h1>Cargando producto...</h1>;
+  if (error) return <h1>Error: {error}</h1>;
+  if (!product) return <h1>Producto no encontrado</h1>;
+
   return (
     <div className="product-page">
-      <h1>{product.product_name}</h1>
+      <h1>{product.name}</h1>
       <div className="content">
         <div>
-          <img src={product.product_image} alt={product.product_name} />
+          <img
+            src={`https://backend-stcom.up.railway.app/${product.image}`}
+            alt={product.name}
+          />
           <p className="price">
-            <span>Precio:</span> ${product.product_price}
+            <span>Precio:</span> ${product.price}
           </p>
         </div>
         <div className="details">
-          <p>{product.product_desc}</p>
+          <p>{product.description}</p>
         </div>
       </div>
 
