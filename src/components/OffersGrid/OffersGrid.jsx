@@ -15,7 +15,7 @@ const OffersGrid = () => {
           "https://backend-stcom.up.railway.app/api/products"
         );
         const onSaleProducts = data.products.filter(
-          (product) => product.on_sale
+          (product) => product.isOnSale
         );
         setProducts(onSaleProducts);
       } catch (error) {
