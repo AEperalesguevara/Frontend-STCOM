@@ -12,13 +12,13 @@ const CartPage = () => {
   const userData = JSON.parse(localStorage.getItem("user")); // Obtiene el objeto del localStorage
   const sanitizedCart = cart.map((item) => ({
     ...item,
-    product_image: item.product_image?.startsWith("http")
-      ? item.product_image
+    image: item.image?.startsWith("http")
+      ? item.image
       : "https://via.placeholder.com/150", // URL de fallback
   }));
 
   const totalPrice = cart.reduce(
-    (total, item) => total + item.product_price * item.quantity,
+    (total, item) => total + item.price * item.quantity,
     0
   );
 
@@ -94,13 +94,13 @@ const CartPage = () => {
       ) : (
         <>
           {cart.map((item) => (
-            <div key={item.product_id} className="cart-item">
-              <img src={item.product_image} alt={item.product_name} />
+            <div key={item.id} className="cart-item">
+              <img src={item.image} alt={item.name} />
               <div className="product-details">
-                <h2>{item.product_name}</h2>
-                <p>Precio: ${item.product_price}</p>
+                <h2>{item.name}</h2>
+                <p>Precio: ${item.price}</p>
                 <p>Cantidad: {item.quantity}</p>
-                <p>Subtotal: ${item.product_price * item.quantity}</p>
+                <p>Subtotal: ${item.price * item.quantity}</p>
               </div>
               <div className="buttons-section">
                 <div className="quantity-buttons">
@@ -113,7 +113,7 @@ const CartPage = () => {
                 </div>
                 <button
                   className="remove-btn"
-                  onClick={() => removeFromCart(item.product_id)}
+                  onClick={() => removeFromCart(item.id)}
                 >
                   Eliminar
                 </button>
