@@ -14,16 +14,17 @@ function ProductPage() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    // Solicita el producto a la API
-    const fetchProduct = async () => {
+    // Solicita la lista de productos a la API
+    const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `https://backend-stcom.up.railway.app/api/products/${id}`
+          "https://backend-stcom.up.railway.app/api/products"
         );
         if (!response.ok) {
-          throw new Error("Error al obtener el producto");
+          throw new Error("Error al obtener los productos");
         }
         const data = await response.json();
+        // Busca el producto específico por `id` en el arreglo de productos
         const foundProduct = data.products.find((p) => p.id === Number(id));
         setProduct(foundProduct);
       } catch (err) {
@@ -32,7 +33,7 @@ function ProductPage() {
         setLoading(false);
       }
     };
-    fetchProduct();
+    fetchProducts();
   }, [id]);
 
   const handleAddToCart = () => {
