@@ -14,7 +14,7 @@ const OffersGrid = () => {
         const { data } = await axios.get(
           "https://backend-stcom.up.railway.app/api/products"
         );
-        const onSaleProducts = data.filter((product) => product.is_on_sale);
+        const onSaleProducts = data.filter((product) => product.on_sale);
         setProducts(onSaleProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -40,18 +40,16 @@ const OffersGrid = () => {
       </h1>
       <div className="product-grid">
         {getRandomProducts().map((product) => (
-          <div className="product-card" key={product.product_id}>
+          <div className="product-card" key={product.id}>
             <img
-              src={product.product_image}
-              alt={product.product_name}
+              src={product.image_url}
+              alt={product.name}
               className="product-image"
             />
-            <h3 className="product-name">{product.product_name}</h3>
-            <p className="product-brand">{product.product_category}</p>
-            <p className="product-description">{product.product_desc}</p>
-            <p className="product-price">{`$${product.product_price.toFixed(
-              2
-            )}`}</p>
+            <h3 className="product-name">{product.name}</h3>
+            <p className="product-brand">{product.category}</p>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price">{`$${product.price.toFixed(2)}`}</p>
           </div>
         ))}
       </div>
