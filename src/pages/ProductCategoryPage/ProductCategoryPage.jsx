@@ -37,7 +37,7 @@ const ProductCategoryPage = () => {
               <Link to={`/product/${product.id}`}>{product.name}</Link>
             </h3>
             <p>${product.price}</p>
-            {product.isOnsale && <span>En oferta</span>}
+            {product.isOnSale && <span>En oferta</span>}
           </div>
         ))}
       </div>
