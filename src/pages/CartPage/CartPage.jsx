@@ -31,7 +31,8 @@ const CartPage = () => {
     try {
       // Enviar la solicitud para  la sesión de Stripe Checkout
       console.log("despues de try");
-      console.log("Datos recibidos en la API:", sanitizedCart);
+      console.log("Sanitized Cart:", sanitizedCart);
+
       const response = await fetch(
         "https://backend-stcom.up.railway.app/payment/create-checkout-session",
         {
@@ -44,9 +45,16 @@ const CartPage = () => {
           }),
         }
       );
-
+      console.log(
+        "Cuerpo:",
+        JSON.stringify({
+          cartItems: sanitizedCart,
+          totalAmount: totalPrice,
+          userId: userData.id,
+        })
+      );
       const { url } = await response.json();
-      console.log("antes de url");
+      console.log("antes de url", url);
       if (url) {
         window.location.href = url; // Redireccionar al Checkout de Stripe
       }
