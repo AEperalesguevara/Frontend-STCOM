@@ -38,7 +38,7 @@ const ProductGrid = () => {
             />
             <h3 className="product-name">{product.name}</h3>
             <p className="product-brand">{product.brand}</p>
-            <p className="product-description">{product.desc}</p>
+            <p className="product-description">{product.description}</p>
             <p className="product-price">{product.price}</p>
           </div>
         ))}
