@@ -30,16 +30,16 @@ const ProductGrid = () => {
       </h1>
       <div className="product-grid">
         {getRandomProducts().map((product) => (
-          <div className="product-card" key={product.product_id}>
+          <div className="product-card" key={product.id}>
             <img
-              src={product.product_image}
-              alt={product.product_name}
+              src={product.image}
+              alt={product.name}
               className="product-image"
             />
-            <h3 className="product-name">{product.product_name}</h3>
-            <p className="product-brand">{product.product_brand}</p>
-            <p className="product-description">{product.product_desc}</p>
-            <p className="product-price">{product.product_price}</p>
+            <h3 className="product-name">{product.name}</h3>
+            <p className="product-brand">{product.brand}</p>
+            <p className="product-description">{product.desc}</p>
+            <p className="product-price">{product.price}</p>
           </div>
         ))}
       </div>
