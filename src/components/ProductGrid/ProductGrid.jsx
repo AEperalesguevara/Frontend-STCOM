@@ -1,8 +1,23 @@
-import { products } from "../../assets/assets";
 import "./ProductGrid.css";
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 const ProductGrid = () => {
-  // Función para obtener 4 productos aleatorios
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://backend-stcom.up.railway.app/api/products"
+        );
+        setProducts(data.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   const getRandomProducts = () => {
     const shuffled = [...products].sort(() => Math.random() - 0.5); // Mezcla los productos
     return shuffled.slice(0, 4); // Selecciona los primeros 4
