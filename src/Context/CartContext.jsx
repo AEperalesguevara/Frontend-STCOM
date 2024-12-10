@@ -30,9 +30,13 @@ const CartProvider = ({ children }) => {
       }
     });
   };
-
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  };
   return (
-    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, clearCart, removeFromCart }}
+    >
       {children}
     </CartContext.Provider>
   );
