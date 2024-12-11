@@ -30,7 +30,7 @@ const ProductBrandPage = () => {
       <div className="product-list">
         {filteredProducts.map((product) => (
           <div key={product.id} className="product-item">
-            <img src={product.product_image} alt={product.name} />
+            <img src={product.image} alt={product.name} />
             <h3>
               <Link to={`/product/${product.id}`}>{product.name}</Link>
             </h3>

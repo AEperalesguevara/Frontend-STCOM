@@ -44,7 +44,7 @@ const OffersGrid = () => {
         {getRandomProducts().map((product) => (
           <div className="product-card" key={product.id}>
             <img
-              src={product.image_url}
+              src={product.image}
               alt={product.name}
               className="product-image"
             />
