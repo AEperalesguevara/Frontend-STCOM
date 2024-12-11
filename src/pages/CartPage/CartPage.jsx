@@ -12,9 +12,7 @@ const CartPage = () => {
   const userData = JSON.parse(localStorage.getItem("user")); // Obtiene el objeto del localStorage
   const sanitizedCart = cart.map((item) => ({
     ...item,
-    image: item.image?.startsWith("http")
-      ? item.image
-      : "https://via.placeholder.com/150", // URL de fallback
+    image: item.image[0] ? item.image : "https://via.placeholder.com/150", // URL de fallback
   }));
 
   const totalPrice = cart.reduce(
