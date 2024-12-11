@@ -64,10 +64,7 @@ function ProductPage() {
       <h1>{product.name}</h1>
       <div className="content">
         <div>
-          <img
-            src={`https://backend-stcom.up.railway.app/${product.image}`}
-            alt={product.name}
-          />
+          <img src={`${product.image}`} alt={product.name} />
           <p className="price">
             <span>Precio:</span> ${product.price}
           </p>
